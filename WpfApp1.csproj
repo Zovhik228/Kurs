@@ -67,8 +67,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +104,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Elements\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.png" />
+    <Resource Include="Images\backs.png" />
+    <Resource Include="Images\calendar.png" />
+    <Resource Include="Images\companies.png" />
+    <Resource Include="Images\del.png" />
+    <Resource Include="Images\Export.png" />
+    <Resource Include="Images\locations.png" />
+    <Resource Include="Images\login.png" />
+    <Resource Include="Images\logo.ico" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\parts.png" />
+    <Resource Include="Images\plus.png" />
+    <Resource Include="Images\redac.png" />
+    <Resource Include="Images\regin.png" />
+    <Resource Include="Images\technique.png" />
+    <Resource Include="Images\type_of_troops.png" />
+    <Resource Include="Images\weapons.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
