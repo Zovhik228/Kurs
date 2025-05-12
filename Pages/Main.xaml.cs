@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassConnection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,13 +42,11 @@ namespace WpfApp1.Pages
         {
             if (connectApply == true)
             {
-                Login.connection.LoadData(Connection.Tables.companies);
-                Login.connection.LoadData(Connection.Tables.locations);
-                Login.connection.LoadData(Connection.Tables.parts);
-                Login.connection.LoadData(Connection.Tables.technique);
-                Login.connection.LoadData(Connection.Tables.type_of_troops);
-                Login.connection.LoadData(Connection.Tables.weapons);
-                Login.connection.LoadData(Connection.Tables.country);
+                Login.connection.LoadData(Connection.Tables.dogovora);
+                Login.connection.LoadData(Connection.Tables.otdeli);
+                Login.connection.LoadData(Connection.Tables.proecti);
+                Login.connection.LoadData(Connection.Tables.putevki);
+                Login.connection.LoadData(Connection.Tables.sotrudnici);
             }
         }
 
@@ -75,30 +74,30 @@ namespace WpfApp1.Pages
             MainWindow.init.frame.BeginAnimation(Frame.OpacityProperty, opgridAnimation);
         }
 
-        private void LoadParts()
+        private void LoadDogovora()
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Parts parts_items in ClassConnection.Connection.parts)
+                foreach (ClassModules.Dogovora dogovora_items in ClassConnection.Connection.dogovoras)
                 {
-                    if (page_select == page_main.parts)
+                    if (page_select == page_main.dogovora)
                     {
-                        parrent.Children.Add(new Elements.Parts_items(parts_items));
+                        parrent.Children.Add(new Elements.Dogovora_item(dogovora_items));
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.parts)
+                if (page_select == page_main.dogovora)
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Parts(new ClassModules.Parts());
+                        var add = new Pages.PagesInTable.Parts(new ClassModules.Dogovora());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
             });
         }
 
-        private void Click_Parts(object sender, RoutedEventArgs e)
+        private void Click_Dogovora(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
@@ -106,11 +105,10 @@ namespace WpfApp1.Pages
             companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.parts)
+            if (page_select != page_main.dogovora)
             {
-                page_select = page_main.parts;
+                page_select = page_main.dogovora;
                 DoubleAnimation opgridAnimation = new DoubleAnimation();
                 opgridAnimation.From = 1;
                 opgridAnimation.To = 0;
@@ -124,7 +122,7 @@ namespace WpfApp1.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadParts();
+                        LoadDogovora();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -132,30 +130,30 @@ namespace WpfApp1.Pages
             }
         }
 
-        private void LoadLocations()
+        private void LoadOtdeli()
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Locations locations_items in ClassConnection.Connection.locations)
+                foreach (ClassModules.Otdeli otdeli_items in ClassConnection.Connection.otdelis)
                 {
-                    if (page_select == page_main.locations)
+                    if (page_select == page_main.otdeli)
                     {
-                        parrent.Children.Add(new Elements.Locations_items(locations_items));
+                        parrent.Children.Add(new Elements.Otdeli_item(otdeli_items));
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.locations)
+                if (page_select == page_main.otdeli)
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Locations(new ClassModules.Locations());
+                        var add = new Pages.PagesInTable.Locations(new ClassModules.Otdeli());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
             });
         }
 
-        private void Click_Locations(object sender, RoutedEventArgs e)
+        private void Click_Otdeli(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
@@ -163,11 +161,10 @@ namespace WpfApp1.Pages
             companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.locations)
+            if (page_select != page_main.otdeli)
             {
-                page_select = page_main.locations;
+                page_select = page_main.otdeli;
                 DoubleAnimation opgridAnimation = new DoubleAnimation();
                 opgridAnimation.From = 1;
                 opgridAnimation.To = 0;
@@ -181,7 +178,7 @@ namespace WpfApp1.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadLocations();
+                        LoadOtdeli();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -189,30 +186,30 @@ namespace WpfApp1.Pages
             }
         }
 
-        private void LoadCompanies()
+        private void LoadProecti()
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Companies companies_items in ClassConnection.Connection.companies)
+                foreach (ClassModules.Proecti proecti_items in ClassConnection.Connection.proectis)
                 {
-                    if (page_select == page_main.companies)
+                    if (page_select == page_main.proecti)
                     {
-                        parrent.Children.Add(new Elements.Companies_items(companies_items));
+                        parrent.Children.Add(new Elements.Proecti_item(proecti_items));
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.companies)
+                if (page_select == page_main.proecti)
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Companies(new ClassModules.Companies());
+                        var add = new Pages.PagesInTable.Companies(new ClassModules.Proecti());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
             });
         }
 
-        private void Click_Companies(object sender, RoutedEventArgs e)
+        private void Click_Proecti(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
@@ -220,11 +217,10 @@ namespace WpfApp1.Pages
             companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.companies)
+            if (page_select != page_main.proecti)
             {
-                page_select = page_main.companies;
+                page_select = page_main.proecti;
                 DoubleAnimation opgridAnimation = new DoubleAnimation();
                 opgridAnimation.From = 1;
                 opgridAnimation.To = 0;
@@ -238,7 +234,7 @@ namespace WpfApp1.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadCompanies();
+                        LoadProecti();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -246,30 +242,30 @@ namespace WpfApp1.Pages
             }
         }
 
-        private void LoadTechnique()
+        private void LoadPutevki()
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Technique technique_items in ClassConnection.Connection.technique)
+                foreach (ClassModules.Putevki putevki_items in ClassConnection.Connection.putevkis)
                 {
-                    if (page_select == page_main.technique)
+                    if (page_select == page_main.putevki)
                     {
-                        parrent.Children.Add(new Elements.Technique_items(technique_items));
+                        parrent.Children.Add(new Elements.Putevki_item(putevki_items));
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.technique)
+                if (page_select == page_main.putevki)
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Technique(new ClassModules.Technique());
+                        var add = new Pages.PagesInTable.Technique(new ClassModules.Putevki());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
             });
         }
 
-        private void Click_Technique(object sender, RoutedEventArgs e)
+        private void Click_Putevki(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
@@ -277,11 +273,10 @@ namespace WpfApp1.Pages
             companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.technique)
+            if (page_select != page_main.putevki)
             {
-                page_select = page_main.technique;
+                page_select = page_main.putevki;
                 DoubleAnimation opgridAnimation = new DoubleAnimation();
                 opgridAnimation.From = 1;
                 opgridAnimation.To = 0;
@@ -295,7 +290,7 @@ namespace WpfApp1.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadTechnique();
+                        LoadPutevki();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -303,30 +298,30 @@ namespace WpfApp1.Pages
             }
         }
 
-        private void LoadTypeOfTroops()
+        private void LoadSotrudniki()
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Type_of_troops type_of_troops_items in ClassConnection.Connection.type_of_troops)
+                foreach (ClassModules.Sotrudnici sotrudnici_items in ClassConnection.Connection.sotrudnicis)
                 {
-                    if (page_select == page_main.type_of_troops)
+                    if (page_select == page_main.sotrudnici)
                     {
-                        parrent.Children.Add(new Elements.TypeOfTroops_items(type_of_troops_items));
+                        parrent.Children.Add(new Elements.Sotrudnici_item(sotrudnici_items));
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.type_of_troops)
+                if (page_select == page_main.sotrudnici)
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Type_of_troops(new ClassModules.Type_of_troops());
+                        var add = new Pages.PagesInTable.Type_of_troops(new ClassModules.Sotrudnici());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
             });
         }
 
-        private void Click_Type_of_troops(object sender, RoutedEventArgs e)
+        private void Click_Sotrudniki(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
@@ -334,11 +329,10 @@ namespace WpfApp1.Pages
             companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.type_of_troops)
+            if (page_select != page_main.sotrudnici)
             {
-                page_select = page_main.type_of_troops;
+                page_select = page_main.sotrudnici;
                 DoubleAnimation opgridAnimation = new DoubleAnimation();
                 opgridAnimation.From = 1;
                 opgridAnimation.To = 0;
@@ -352,64 +346,7 @@ namespace WpfApp1.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadTypeOfTroops();
-                    };
-                    parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
-                };
-                parrent.BeginAnimation(StackPanel.OpacityProperty, opgridAnimation);
-            }
-        }
-
-        private void LoadWeapons()
-        {
-            Dispatcher.InvokeAsync(async () =>
-            {
-                foreach (ClassModules.Weapons weapons_items in ClassConnection.Connection.weapons)
-                {
-                    if (page_select == page_main.weapons)
-                    {
-                        parrent.Children.Add(new Elements.Weapons_items(weapons_items));
-                        await Task.Delay(90);
-                    }
-                }
-                if (page_select == page_main.weapons)
-                {
-                    if (Login.UserInfo[1] == "admin")
-                    {
-                        var add = new Pages.PagesInTable.Weapons(new ClassModules.Weapons());
-                        parrent.Children.Add(new Elements.Add(add));
-                    }
-                }
-            });
-        }
-
-        private void Click_Weapons(object sender, RoutedEventArgs e)
-        {
-            Search.IsEnabled = true;
-            parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
-            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.weapons)
-            {
-                page_select = page_main.weapons;
-                DoubleAnimation opgridAnimation = new DoubleAnimation();
-                opgridAnimation.From = 1;
-                opgridAnimation.To = 0;
-                opgridAnimation.Duration = TimeSpan.FromSeconds(0.2);
-                opgridAnimation.Completed += delegate
-                {
-                    parrent.Children.Clear();
-                    DoubleAnimation opgriAnimation = new DoubleAnimation();
-                    opgriAnimation.From = 0;
-                    opgriAnimation.To = 1;
-                    opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
-                    opgriAnimation.Completed += delegate
-                    {
-                        LoadWeapons();
+                        LoadSotrudniki();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -425,7 +362,6 @@ namespace WpfApp1.Pages
             companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             parrent.Children.Clear();
             page_select = page_main.none;
             var export = new ExportWindow();
@@ -439,43 +375,29 @@ namespace WpfApp1.Pages
             if (!string.IsNullOrWhiteSpace(Search.Text) && Search.Text != "Поиск")
             {
                 await Task.Delay(100);
-                if (page_select == page_main.parts)
+                if (page_select == page_main.dogovora)
                 {
                     parrent.Children.Clear();
-                    var parts = Connection.parts.FindAll(x => x.Id_part.ToString() == Search.Text);
-                    foreach (var itemSearch in parts) parrent.Children.Add(new Elements.Parts_items(itemSearch));
+                    var dogovora = Connection.dogovoras.FindAll(x => x.id.ToString() == Search.Text);
+                    foreach (var itemSearch in dogovora) parrent.Children.Add(new Elements.Dogovora_item(itemSearch));
                 }
-                else if (page_select == page_main.locations)
+                else if (page_select == page_main.proecti)
                 {
                     parrent.Children.Clear();
-                    var country = Connection.country.FindAll(x => x.Name.Contains(Search.Text));
-                    var countryIds = country.Select(c => c.Id).ToList();
-                    var locationsByCountry = Connection.locations.Where(l => countryIds.Contains(l.Country)).ToList();
-                    foreach (var itemSearch in locationsByCountry) parrent.Children.Add(new Elements.Locations_items(itemSearch));
+                    var companiesById = Connection.proectis.FindAll(x => x.id.ToString().Contains(Search.Text));
+                    foreach (var itemSearch in companiesById) parrent.Children.Add(new Elements.Proecti_item(itemSearch));
                 }
-                else if (page_select == page_main.companies)
+                else if (page_select == page_main.putevki)
                 {
                     parrent.Children.Clear();
-                    var companiesById = Connection.companies.FindAll(x => x.Id_companies.ToString().Contains(Search.Text));
-                    foreach (var itemSearch in companiesById) parrent.Children.Add(new Elements.Companies_items(itemSearch));
+                    var techniqueByName = Connection.putevkis.FindAll(x => x.Type_of_activity.Contains(Search.Text));
+                    foreach (var itemSearch in techniqueByName) parrent.Children.Add(new Elements.Putevki_item(itemSearch));
                 }
-                else if (page_select == page_main.technique)
+                else if (page_select == page_main.sotrudnici)
                 {
                     parrent.Children.Clear();
-                    var techniqueByName = Connection.technique.FindAll(x => x.Name_technique.Contains(Search.Text));
-                    foreach (var itemSearch in techniqueByName) parrent.Children.Add(new Elements.Technique_items(itemSearch));
-                }
-                else if (page_select == page_main.type_of_troops)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.type_of_troops.FindAll(x => x.Name_type_of_troops.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.TypeOfTroops_items(itemSearch));
-                }
-                else if (page_select == page_main.weapons)
-                {
-                    parrent.Children.Clear();
-                    var weaponById = Connection.weapons.FindAll(x => x.Id_weapons.ToString().Contains(Search.Text));
-                    foreach (var itemSearch in weaponById) parrent.Children.Add(new Elements.Weapons_items(itemSearch));
+                    var typeOfTroopByName = Connection.sotrudnicis.FindAll(x => x.Job_title.Contains(Search.Text));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Sotrudnici_item(itemSearch));
                 }
             }
             else
@@ -488,35 +410,30 @@ namespace WpfApp1.Pages
                 }
                 if (!isDataLoaded || Search.Text == "Поиск")
                 {
-                    if (page_select == page_main.parts)
+                    if (page_select == page_main.dogovora)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadParts();
+                        LoadDogovora();
                     }
-                    else if (page_select == page_main.locations)
+                    else if (page_select == page_main.otdeli)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadLocations();
+                        LoadOtdeli();
                     }
-                    else if (page_select == page_main.companies)
+                    else if (page_select == page_main.proecti)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadCompanies();
+                        LoadProecti();
                     }
-                    else if (page_select == page_main.technique)
+                    else if (page_select == page_main.putevki)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadTechnique();
+                        LoadPutevki();
                     }
-                    else if (page_select == page_main.type_of_troops)
+                    else if (page_select == page_main.sotrudnici)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadTypeOfTroops();
-                    }
-                    else if (page_select == page_main.weapons)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadWeapons();
+                        LoadSotrudniki();
                     }
                     isDataLoaded = true;
                 }
@@ -535,7 +452,6 @@ namespace WpfApp1.Pages
             companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             parrent.Children.Clear();
             page_select = page_main.none;
             Login.UserInfo[0] = ""; Login.UserInfo[1] = "";
@@ -546,35 +462,30 @@ namespace WpfApp1.Pages
         {
             if (page_restart != page_main.none)
             {
-                if (page_restart == page_main.parts)
+                if (page_restart == page_main.dogovora)
                 {
                     page_select = page_main.none;
-                    Click_Parts(new object(), new RoutedEventArgs());
+                    Click_Dogovora(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.locations)
+                else if (page_restart == page_main.otdeli)
                 {
                     page_select = page_main.none;
-                    Click_Locations(new object(), new RoutedEventArgs());
+                    Click_Otdeli(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.companies)
+                else if (page_restart == page_main.proecti)
                 {
                     page_select = page_main.none;
-                    Click_Companies(new object(), new RoutedEventArgs());
+                    Click_Proecti(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.technique)
+                else if (page_restart == page_main.putevki)
                 {
                     page_select = page_main.none;
-                    Click_Technique(new object(), new RoutedEventArgs());
+                    Click_Putevki(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.type_of_troops)
+                else if (page_restart == page_main.sotrudnici)
                 {
                     page_select = page_main.none;
-                    Click_Type_of_troops(new object(), new RoutedEventArgs());
-                }
-                else if (page_restart == page_main.weapons)
-                {
-                    page_select = page_main.none;
-                    Click_Weapons(new object(), new RoutedEventArgs());
+                    Click_Sotrudniki(new object(), new RoutedEventArgs());
                 }
             }
             else
