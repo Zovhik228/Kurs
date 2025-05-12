@@ -109,6 +109,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddPages\Dogovor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddPages\Otdeli.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddPages\Proecti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddPages\Putevki.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddPages\Sotrudnici.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +143,21 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AddPages\Dogovor.xaml.cs">
+      <DependentUpon>Dogovor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddPages\Otdeli.xaml.cs">
+      <DependentUpon>Otdeli.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddPages\Proecti.xaml.cs">
+      <DependentUpon>Proecti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddPages\Putevki.xaml.cs">
+      <DependentUpon>Putevki.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddPages\Sotrudnici.xaml.cs">
+      <DependentUpon>Sotrudnici.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -154,9 +189,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\AddPages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\back.png" />
     <Resource Include="Images\backs.png" />
